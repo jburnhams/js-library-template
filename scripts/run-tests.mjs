@@ -3,6 +3,11 @@ import path from 'node:path';
 import { readdirSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 
+// Node's built-in test runner requires explicit file paths and does not expand
+// globs in a cross-platform way when invoked from npm scripts. We compile the
+// TypeScript tests ahead of time, gather the resulting `.test.js` files, and
+// pass them directly to `node --test` so contributors on any shell get a
+// consistent experience.
 const variant = process.argv[2] ?? 'unit';
 const root = path.resolve('build', 'tests', 'tests', variant);
 

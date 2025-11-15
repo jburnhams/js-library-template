@@ -13,6 +13,10 @@
 - `npm run test:integration` builds the browser bundles and runs the slower integration suite.
 - `npm run coverage` generates coverage metrics from the unit suite only.
 
+All three commands rely on `scripts/run-tests.mjs` to expand the compiled test files. Node's `--test` flag does not accept glob
+patterns when executed through cross-platform npm scripts, so the helper discovers `.test.js` files produced by `tsc` and invokes
+the runner with explicit paths.
+
 When adding new tests, place them in the appropriate folder above and update or create helpers inside `tests/utils/` if needed.
 
 ## Completion checklist
