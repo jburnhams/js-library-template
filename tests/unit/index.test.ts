@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { hello, goodbye, Greeter } from './index.js';
+import { hello, goodbye, Greeter } from '../../src/index.js';
 
 describe('hello function', () => {
   it('should return default greeting', () => {
