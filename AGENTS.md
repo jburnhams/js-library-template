@@ -14,3 +14,6 @@
 - `npm run coverage` generates coverage metrics from the unit suite only.
 
 When adding new tests, place them in the appropriate folder above and update or create helpers inside `tests/utils/` if needed.
+
+## Completion checklist
+- Always run `npm run build` and `npm run test` before declaring a task complete. Include the commands (and their results) in your final status message.
