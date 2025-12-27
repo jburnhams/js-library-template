@@ -46,16 +46,15 @@
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:bundles": "node scripts/build-bundles.mjs",
     "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:bundles",
-    "build:tests": "tsc -p tsconfig.tests.json",
-    "build:docs": "npm run build && node scripts/build-browser-bundle.js",
-    "test": "npm run test:unit",
-    "test:unit": "npm run build:tests && node scripts/run-tests.mjs unit",
-    "test:integration": "npm run build:docs && npm run build:tests && node scripts/run-tests.mjs integration",
+    "build:docs": "npm run build -w docs",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
     "test:all": "npm run test:unit && npm run test:integration",
     "smoke:esm": "node scripts/smoke-esm.mjs",
     "smoke:cjs": "node scripts/smoke-cjs.cjs",
     "smoke": "npm run smoke:esm && npm run smoke:cjs",
-    "coverage": "npm run build && npm run build:tests && c8 --reporter=lcov --reporter=text node scripts/run-tests.mjs unit",
+    "coverage": "vitest run --coverage",
     "size": "npm run build && node scripts/check-bundle-size.mjs",
     "prepublishOnly": "npm run build"
   },
@@ -65,14 +64,17 @@
   ],
   "author": "",
   "license": "MIT",
+  "workspaces": [
+    "docs"
+  ],
   "devDependencies": {
-    "@types/node": "^24.9.1",
-    "c8": "^10.1.3",
-    "happy-dom": "^20.0.8",
-    "typescript": "^5.9.3"
+    "@types/node": "^24.10.4",
+    "@vitest/coverage-v8": "^4.0.16",
+    "happy-dom": "^20.0.11",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
   },
   "engines": {
     "node": ">=20.0.0"
-  },
-  "dependencies": {}
+  }
 }
