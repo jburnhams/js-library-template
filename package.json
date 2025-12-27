@@ -54,7 +54,7 @@
     "smoke:esm": "node scripts/smoke-esm.mjs",
     "smoke:cjs": "node scripts/smoke-cjs.cjs",
     "smoke": "npm run smoke:esm && npm run smoke:cjs",
-    "coverage": "vitest run --coverage",
+    "coverage": "vitest run tests/unit --coverage",
     "size": "npm run build && node scripts/check-bundle-size.mjs",
     "prepublishOnly": "npm run build"
   },
