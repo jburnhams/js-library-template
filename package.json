@@ -13,11 +13,11 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
       "browser": {
         "default": "./dist/bundles/my-library.esm.js"
       },
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
     },
     "./bundle": {
