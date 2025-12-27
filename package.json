@@ -13,11 +13,11 @@
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
       "browser": {
         "default": "./dist/bundles/my-library.esm.js"
       },
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
     },
     "./bundle": {
@@ -49,12 +49,12 @@
     "build:docs": "npm run build -w docs",
     "test": "vitest run",
     "test:unit": "vitest run tests/unit",
-    "test:integration": "vitest run tests/integration",
+    "test:integration": "npm run build && vitest run tests/integration",
     "test:all": "npm run test:unit && npm run test:integration",
     "smoke:esm": "node scripts/smoke-esm.mjs",
     "smoke:cjs": "node scripts/smoke-cjs.cjs",
     "smoke": "npm run smoke:esm && npm run smoke:cjs",
-    "coverage": "vitest run --coverage",
+    "coverage": "vitest run tests/unit --coverage",
     "size": "npm run build && node scripts/check-bundle-size.mjs",
     "prepublishOnly": "npm run build"
   },
