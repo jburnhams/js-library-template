@@ -15,7 +15,8 @@ export default defineConfig({
       formats: ['es', 'cjs', 'iife'],
     },
     sourcemap: true,
-    minify: false,
+    minify: true,
+    rollupOptions: {},
   },
   plugins: [
     dts({
