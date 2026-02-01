@@ -30,8 +30,8 @@ function toPascalCase(str: string): string {
 
 // Path to the generated bundles
 const distDir = path.join(projectRoot, 'dist');
-const iifeBundlePath = path.join(distDir, 'browser', `${libraryName}.min.js`);
-const esmBundlePath = path.join(distDir, 'bundles', `${libraryName}.esm.js`);
+const iifeBundlePath = path.join(distDir, `${libraryName}.iife.js`);
+const esmBundlePath = path.join(distDir, `${libraryName}.js`);
 
 describe('Browser Bundle Tests', () => {
   test('IIFE bundle attaches global namespace', () => {
@@ -45,7 +45,7 @@ describe('Browser Bundle Tests', () => {
       vm.runInContext(bundleCode, context);
     }).not.toThrow();
 
-    const globalApi = context.window[globalName] ?? context.globalThis[globalName];
+    const globalApi = context[globalName] ?? context.window[globalName] ?? context.globalThis[globalName];
     expect(globalApi).toBeTruthy();
     expect(typeof globalApi.hello).toBe('function');
     expect(typeof globalApi.goodbye).toBe('function');
@@ -114,7 +114,7 @@ describe('Functional Tests - Verify Bundle Works Correctly', () => {
     vm.createContext(context);
     vm.runInContext(bundleCode, context);
 
-    const api = context.window[globalName] ?? context.globalThis[globalName];
+    const api = context[globalName] ?? context.window[globalName] ?? context.globalThis[globalName];
 
     // Test hello function
     expect(api.hello()).toBe('Hello, World!');
