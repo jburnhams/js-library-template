@@ -21,7 +21,7 @@ export default defineConfig({
   plugins: [
     dts({
       exclude: ['**/*.test.ts', 'tests/**'],
-      rollupTypes: false
+      rollupTypes: true
     })
   ],
   test: {
