@@ -11,8 +11,8 @@ const libraryName = packageJson.name;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.join(__dirname, '..');
-const bundlePath = path.join(projectRoot, 'dist', 'browser', `${libraryName}.min.js`);
-const esmPath = path.join(projectRoot, 'dist', 'bundles', `${libraryName}.esm.js`);
+const bundlePath = path.join(projectRoot, 'dist', `${libraryName}.iife.js`);
+const esmPath = path.join(projectRoot, 'dist', `${libraryName}.js`);
 
 const BUNDLE_LIMIT = 100 * 1024;
 const GZIP_LIMIT = 50 * 1024;

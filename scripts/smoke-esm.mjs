@@ -5,7 +5,7 @@ import assert from 'node:assert';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const esmPath = path.join(__dirname, '..', 'dist', 'esm', 'index.js');
+const esmPath = path.join(__dirname, '..', 'dist', 'my-library.js');
 const mod = await import(pathToFileURL(esmPath).href);
 
 // Update these assertions to match your library's exports

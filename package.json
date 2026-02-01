@@ -6,54 +6,47 @@
     "type": "git",
     "url": "https://github.com/YOUR_USERNAME/YOUR_REPO.git"
   },
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/my-library.cjs",
+  "module": "dist/my-library.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "browser": {
-        "default": "./dist/bundles/my-library.esm.js"
+        "default": "./dist/my-library.js"
       },
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs",
-      "default": "./dist/esm/index.js"
+      "import": "./dist/my-library.js",
+      "require": "./dist/my-library.cjs",
+      "default": "./dist/my-library.js"
     },
     "./bundle": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/bundles/my-library.esm.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/my-library.js"
     },
     "./browser": {
-      "default": "./dist/browser/my-library.min.js"
+      "default": "./dist/my-library.iife.js"
     },
     "./package.json": "./package.json"
   },
-  "browser": "dist/browser/my-library.min.js",
-  "unpkg": "dist/browser/my-library.min.js",
-  "jsdelivr": "dist/browser/my-library.min.js",
+  "browser": "dist/my-library.iife.js",
+  "unpkg": "dist/my-library.iife.js",
+  "jsdelivr": "dist/my-library.iife.js",
   "files": [
-    "dist/esm",
-    "dist/cjs",
-    "dist/bundles",
-    "dist/browser",
-    "dist/types",
+    "dist",
     "README.md"
   ],
   "scripts": {
     "clean": "node scripts/clean.mjs",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:bundles": "node scripts/build-bundles.mjs",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:bundles",
+    "build": "npm run clean && vite build",
     "build:docs": "npm run build -w docs",
     "test": "vitest run",
     "test:unit": "vitest run tests/unit",
     "test:integration": "npm run build && vitest run tests/integration",
     "test:all": "npm run test:unit && npm run test:integration",
+    "smoke": "npm run smoke:esm && npm run smoke:cjs",
     "smoke:esm": "node scripts/smoke-esm.mjs",
     "smoke:cjs": "node scripts/smoke-cjs.cjs",
-    "smoke": "npm run smoke:esm && npm run smoke:cjs",
     "coverage": "vitest run tests/unit --coverage",
     "size": "npm run build && node scripts/check-bundle-size.mjs",
     "prepublishOnly": "npm run build"
@@ -68,11 +61,13 @@
     "docs"
   ],
   "devDependencies": {
-    "@types/node": "^24.10.4",
-    "@vitest/coverage-v8": "^4.0.16",
-    "happy-dom": "^20.0.11",
+    "@types/node": "^25.2.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "happy-dom": "^20.4.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=20.0.0"
